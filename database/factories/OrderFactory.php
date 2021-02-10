@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Rates;
+use App\Order;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class RatesFactory extends Factory
+class OrderFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Rates::class;
+    protected $model = Order::class;
 
     /**
      * Define the model's default state.

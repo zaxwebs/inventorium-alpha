@@ -2,16 +2,16 @@
 
 namespace App;
 
-use App\Product;
+use App\OrderItems;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Category extends Model
+class Order extends Model
 {
     use HasFactory;
 
-    public function products()
+    public function items()
     {
-        return $this->belongsToMany(Product::class, 'product_category');
+        return $this->hasMany(OrderItems::class);
     }
 }
