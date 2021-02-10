@@ -19,7 +19,7 @@ class Product extends Model
 
     public function unit()
     {
-        return $this->hasOne(Unit::class);
+        return $this->belongsTo(Unit::class);
     }
 
     public function categories()
