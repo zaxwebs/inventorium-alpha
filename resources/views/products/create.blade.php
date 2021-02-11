@@ -31,8 +31,9 @@
 									@foreach ($units as $unit)
 									<div class="col-md-4">
 										<div class="form-check">
-											<input class="form-check-input" type="radio" name="unit" value="{{ $unit->id }}">
-											<label class="form-check-label">
+											<input class="form-check-input" type="radio" id="{{ 'unit-'.$unit->id }}" name="unit"
+												value="{{ $unit->id }}">
+											<label class="form-check-label d-block" for="{{ 'unit-'.$unit->id }}">
 												{{ $unit->name }}
 											</label>
 										</div>
