@@ -41,7 +41,9 @@ class UnitController extends Controller
             'name' => 'required|unique:units|max:255',
         ]);
 
-        return redirect()->back()->with('success', 'Good job!');
+        $unit = Unit::create($validated);
+
+        return redirect()->back()->with('success', "New unit '". $unit->name."' has been created.");
     }
 
     /**
