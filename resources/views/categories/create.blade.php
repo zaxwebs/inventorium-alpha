@@ -5,8 +5,8 @@
 	<div class="col-md-6">
 		<div class="card">
 
-			<form method="post" action="{{ route('units.store') }}">
-				<div class="card-header"><strong>Create a Unit</strong></div>
+			<form method="post" action="{{ route('categories.store') }}">
+				<div class="card-header"><strong>Create a Category</strong></div>
 				<div class="card-body">
 					<div class="row">
 						<div class="col-sm-12">
@@ -19,7 +19,7 @@
 					</div>
 				</div>
 				<div class="card-footer">
-					<button class="btn btn-primary" type="submit"> Submit</button>
+					<button class="btn btn-primary" type="submit"> Create Category</button>
 				</div>
 			</form>
 		</div>

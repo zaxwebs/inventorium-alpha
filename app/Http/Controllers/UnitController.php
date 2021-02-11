@@ -25,7 +25,7 @@ class UnitController extends Controller
     public function create()
     {
         //
-        return view('unit.create');
+        return view('units.create');
     }
 
     /**
