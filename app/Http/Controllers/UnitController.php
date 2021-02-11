@@ -38,8 +38,10 @@ class UnitController extends Controller
     {
         //
         $validated = $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'required|unique:units|max:255',
         ]);
+
+        return redirect()->back()->with('success', 'Good job!');
     }
 
     /**

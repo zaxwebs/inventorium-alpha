@@ -32,9 +32,17 @@
 					<div class="alert alert-danger">
 						<ul>
 							@foreach ($errors->all() as $error)
-							<li><i class="cil-x"></i> {{ $error }}</li>
+							<li class="d-flex align-items-center"><i class="cil-x"></i> {{ $error }}</li>
 							@endforeach
 						</ul>
+					</div>
+				</div>
+				@endif
+				<!-- Success alert -->
+				@if (Session::has('success'))
+				<div class="container-fluid">
+					<div class="alert alert-success d-flex align-items-center">
+						<i class="cil-check-alt"></i> {{ session('success') }}
 					</div>
 				</div>
 				@endif

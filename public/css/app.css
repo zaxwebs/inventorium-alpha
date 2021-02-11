@@ -4,11 +4,6 @@
     padding-left: 0;
 }
 
-.alert li {
-    display: flex;
-    align-items: center;
-}
-
 .alert i {
     margin-right: 0.5rem;
 }
