@@ -14,7 +14,7 @@
 				<i class="c-sidebar-nav-icon cil-puzzle"></i> Add Product</a></li>
 		<li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="typography.html">
 				<i class="c-sidebar-nav-icon cil-puzzle"></i> Add Category</a></li>
-		<li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="typography.html">
+		<li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('units.create') }}">
 				<i class="c-sidebar-nav-icon cil-puzzle"></i> Add Unit</a></li>
 		<li class="c-sidebar-nav-title">Modules</li>
 		<li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle"
@@ -71,7 +71,8 @@
 				href="#">
 				<i class="c-sidebar-nav-icon cil-puzzle"></i> Units</a>
 			<ul class="c-sidebar-nav-dropdown-items">
-				<li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#"><span class="c-sidebar-nav-icon"></span>
+				<li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('units.create') }}"><span
+							class="c-sidebar-nav-icon"></span>
 						Add Unit</a></li>
 				<li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#"><span class="c-sidebar-nav-icon"></span>
 						View Units</a></li>
