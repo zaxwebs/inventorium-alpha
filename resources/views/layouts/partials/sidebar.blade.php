@@ -10,8 +10,8 @@
 				<i class="c-sidebar-nav-icon cil-puzzle"></i> Add Sale</a></li>
 		<li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="typography.html">
 				<i class="c-sidebar-nav-icon cil-puzzle"></i> Add Purchase</a></li>
-		<li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="colors.html">
-				<i class="c-sidebar-nav-icon cil-puzzle"></i> Add Product</a></li>
+		<li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('products.create') }}">
+				<i class="c-sidebar-nav-icon cil-devices"></i> Add Product</a></li>
 		<li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('categories.create') }}">
 				<i class="c-sidebar-nav-icon cil-tag"></i> Add Category</a></li>
 		<li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('units.create') }}">
@@ -49,9 +49,10 @@
 		</li>
 		<li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle"
 				href="#">
-				<i class="c-sidebar-nav-icon cil-puzzle"></i> Products</a>
+				<i class="c-sidebar-nav-icon cil-devices"></i> Products</a>
 			<ul class="c-sidebar-nav-dropdown-items">
-				<li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#"><span class="c-sidebar-nav-icon"></span>
+				<li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('products.create') }}"><span
+							class="c-sidebar-nav-icon"></span>
 						Add Product</a></li>
 				<li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#"><span class="c-sidebar-nav-icon"></span>
 						View Products</a></li>

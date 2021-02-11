@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Unit;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,10 @@ class ProductController extends Controller
     public function create()
     {
         //
+        return view('products.create', [
+            'products' => Product::pluck('name'),
+            'units'=> Unit::all(),
+            ]);
     }
 
     /**
@@ -36,6 +41,14 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
+        //
+        $validated = $request->validate([
+            'name' => 'required|unique:products|max:255',
+        ]);
+
+        $product = Product::create($validated);
+
+        return redirect()->back()->with('success', "New product '". $unit->name."' has been created.");
     }
 
     /**

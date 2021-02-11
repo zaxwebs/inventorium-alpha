@@ -12,6 +12,15 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name'
+    ];
+
+    public function getNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
     public function rates()
     {
         return $this->hasMany(Rate::class);
