@@ -14,9 +14,9 @@ class Category extends Model
         'name'
     ];
 
-    public function setNameAttribute($value)
+    public function getNameAttribute($value)
     {
-        $this->attributes['name'] = ucfirst($value);
+        return ucfirst($value);
     }
 
     public function products()
