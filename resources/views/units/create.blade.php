@@ -13,7 +13,13 @@
 							@csrf
 							<div class="form-group">
 								<label for="name">Name</label>
-								<input class="form-control" id="name" name="name" type="text" placeholder="Enter unit name">
+								<input class="form-control" id="name" name="name" list="names" type="text"
+									placeholder="Enter unit name">
+								<datalist id="names">
+									@foreach($units as $unit)
+									<option value="{{ $unit }}">
+										@endforeach
+								</datalist>
 							</div>
 						</div>
 					</div>

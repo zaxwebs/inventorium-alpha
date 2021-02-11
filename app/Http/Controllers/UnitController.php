@@ -25,7 +25,7 @@ class UnitController extends Controller
     public function create()
     {
         //
-        return view('units.create');
+        return view('units.create', ['units' => Unit::pluck('name')]);
     }
 
     /**
