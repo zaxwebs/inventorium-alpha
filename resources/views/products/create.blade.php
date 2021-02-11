@@ -55,6 +55,32 @@
 							</div>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="cost_price">Cost Price</label>
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<div class="input-group-text">$</div>
+									</div>
+									<input class="form-control" id="cost_price" name="cost_price" type="number" min="0" step="any"
+										placeholder="Enter cost price">
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="cost_price">Selling Price</label>
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<div class="input-group-text">$</div>
+									</div>
+									<input class="form-control" id="selling_price" name="selling_price" type="number" min="0" step="any"
+										placeholder="Enter selling price">
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="card-footer">
 					<button class="btn btn-primary" type="submit"> Add Product</button>
