@@ -46,7 +46,7 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="form-group">
-								<label for="categories">Select Categories</label>
+								<label class="d-block" for="categories">Select Categories</label>
 								<select multiple class="form-control" id="categories" size="10">
 									@foreach ($categories as $category)
 									<option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -64,4 +64,24 @@
 
 	</div>
 </div>
+@endsection
+
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/bootstrap-multiselect.min.css') }}">
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/bootstrap-multiselect.min.js') }}"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+			$('#categories').multiselect({
+				enableFiltering: true,
+				buttonWidth: '100%',
+				enableCaseInsensitiveFiltering: true,
+				templates: {
+        filter: '<div class="multiselect-filter"><div class="input-group p-1"><input class="form-control multiselect-search" type="text" /><div class="input-group-append"><button class="multiselect-clear-filter input-group-text" type="button">Clear</button></div></div></div>'
+      }
+			})
+	});
+</script>
 @endsection
