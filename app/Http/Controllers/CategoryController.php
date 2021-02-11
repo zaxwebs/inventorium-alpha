@@ -36,6 +36,13 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $validated = $request->validate([
+            'name' => 'required|unique:categories|max:255',
+        ]);
+
+        $category = Category::create($validated);
+
+        return redirect()->back()->with('success', "New category '". $category->name."' has been created.");
     }
 
     /**
