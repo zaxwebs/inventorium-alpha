@@ -9,6 +9,8 @@
 	<!-- CoreUI CSS -->
 	<link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/all.min.css">
 	<link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css" crossorigin="anonymous">
+	<!-- App CSS -->
+	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 	<title>CoreUI</title>
 </head>
 
@@ -24,7 +26,21 @@
 		</header>
 		<div class="c-body">
 			<main class="c-main">
-				@yield('content')
+				<!-- Error alert -->
+				@if ($errors->any())
+				<div class="container-fluid">
+					<div class="alert alert-danger">
+						<ul>
+							@foreach ($errors->all() as $error)
+							<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
+				</div>
+				@endif
+				<div class="container-fluid">
+					@yield('content')
+				</div>
 			</main>
 		</div>
 		<footer class="c-footer">

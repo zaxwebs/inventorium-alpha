@@ -25,6 +25,7 @@ class UnitController extends Controller
     public function create()
     {
         //
+        return view('unit.create');
     }
 
     /**
@@ -36,6 +37,9 @@ class UnitController extends Controller
     public function store(Request $request)
     {
         //
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+        ]);
     }
 
     /**
