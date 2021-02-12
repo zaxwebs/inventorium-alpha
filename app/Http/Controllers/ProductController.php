@@ -9,6 +9,7 @@ use App\Category;
 use App\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -54,23 +55,28 @@ class ProductController extends Controller
             'selling_price' => 'required|regex:/^\d+(\.\d{1,2})?$/'
         ], [], ['categories.*' => 'category (or more)']);
 
-        $product = Product::create([
+        $product = new Product();
+        $product->fill([
             'name' => $request->get('name'),
             'unit_id' => $request->get('unit'),
         ]);
 
-        $rate = Rate::create([
-            'product_id' => $product->id,
-            'cost_price' => $request->get('cost_price'),
-            'selling_price' => $request->get('selling_price'),
-        ]);
-
-        foreach($request->get('categories') as $category_id) {
-            ProductCategory::create([
+        DB::transaction(function () use ($request, $product) {
+            $product->save();
+    
+            $rate = Rate::create([
                 'product_id' => $product->id,
-                'category_id' => $category_id
+                'cost_price' => $request->get('cost_price'),
+                'selling_price' => $request->get('selling_price'),
             ]);
-        }
+    
+            foreach($request->get('categories') as $category_id) {
+                ProductCategory::create([
+                    'product_id' => $product->id,
+                    'category_id' => $category_id
+                ]);
+            }
+        });
 
         return redirect()->back()->with('success', "New product '". $product->name."' has been created.");
     }
