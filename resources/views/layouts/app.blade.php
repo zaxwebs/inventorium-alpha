@@ -14,7 +14,7 @@
 	<!-- App CSS -->
 	@yield('styles')
 	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
-	<title>CoreUI</title>
+	<title>Inventorium</title>
 </head>
 
 <body class="c-app">
