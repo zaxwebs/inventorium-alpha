@@ -14,7 +14,7 @@
 							<div class="form-group">
 								<label for="name">Name</label>
 								<input class="form-control" id="name" name="name" list="names" type="text"
-									placeholder="Enter product name">
+									placeholder="Enter product name" value="{{ old('name') }}">
 								<datalist id="names">
 									@foreach($products as $product)
 									<option value="{{ $product }}">
@@ -32,7 +32,7 @@
 									<div class="col-md-4">
 										<div class="form-check mb-2">
 											<input class="form-check-input" type="radio" id="{{ 'unit-'.$unit->id }}" name="unit"
-												value="{{ $unit->id }}">
+												value="{{ $unit->id }}" @if(old('unit')==$unit->id) checked @endif>
 											<label class="form-check-label d-flex" for="{{ 'unit-'.$unit->id }}">
 												{{ $unit->name }}
 											</label>
@@ -49,7 +49,10 @@
 								<label class="d-block" for="categories">Select Categories</label>
 								<select name="categories[]" multiple class="form-control" id="categories" size="10">
 									@foreach ($categories as $category)
-									<option value="{{ $category->id }}">{{ $category->name }}</option>
+									<option value="{{ $category->id }}"
+										{{ collect(old('categories'))->contains($category->id ) ? 'selected' : ''  }}>
+										{{ $category->name }}
+									</option>
 									@endforeach
 								</select>
 							</div>
@@ -64,7 +67,7 @@
 										<div class="input-group-text">$</div>
 									</div>
 									<input class="form-control" id="cost_price" name="cost_price" type="number" min="0" step="any"
-										placeholder="Enter cost price">
+										placeholder="Enter cost price" value={{ old('cost_price') }}>
 								</div>
 							</div>
 						</div>
@@ -76,7 +79,7 @@
 										<div class="input-group-text">$</div>
 									</div>
 									<input class="form-control" id="selling_price" name="selling_price" type="number" min="0" step="any"
-										placeholder="Enter selling price">
+										placeholder="Enter selling price" value={{ old('selling_price') }}>
 								</div>
 							</div>
 						</div>
