@@ -6,6 +6,7 @@ use App\Unit;
 use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ProductController extends Controller
 {
@@ -42,11 +43,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        //
+        //TODO: Update message for invalid categories
         $validated = $request->validate([
             'name' => 'required|unique:products|max:255',
-        ]);
+            'unit' => 'required|exists:units,id',
+            'categories' => 'required|array',
+            'categories.*' => 'required|in:'. Category::pluck('id')->implode(','),
+        ], [], ['categories.*' => 'category']);
+        
+        dd($request->get('categories'));
 
         $product = Product::create($validated);
 
