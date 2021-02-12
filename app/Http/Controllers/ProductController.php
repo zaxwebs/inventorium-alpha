@@ -61,22 +61,26 @@ class ProductController extends Controller
             'unit_id' => $request->get('unit'),
         ]);
 
-        DB::transaction(function () use ($request, $product) {
-            $product->save();
-    
-            $rate = Rate::create([
-                'product_id' => $product->id,
-                'cost_price' => $request->get('cost_price'),
-                'selling_price' => $request->get('selling_price'),
-            ]);
-    
-            foreach($request->get('categories') as $category_id) {
-                ProductCategory::create([
+        try {
+            DB::transaction(function () use ($request, $product) {
+                $product->save();
+        
+                $rate = Rate::create([
                     'product_id' => $product->id,
-                    'category_id' => $category_id
+                    'cost_price' => $request->get('cost_price'),
+                    'selling_price' => $request->get('selling_price'),
                 ]);
-            }
-        });
+        
+                foreach($request->get('categories') as $category_id) {
+                    ProductCategory::create([
+                        'product_id' => $product->id,
+                        'category_id' => $category_id
+                    ]);
+                }
+            });
+        } catch (\Exception $e) {
+            return redirect()->back()->with('danger', "Something went wrong when adding the product.");
+        }
 
         return redirect()->back()->with('success', "New product '". $product->name."' has been created.");
     }
