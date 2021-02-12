@@ -99,7 +99,6 @@
 @section('scripts')
 <script src="{{ asset('js/bootstrap-multiselect.min.js') }}"></script>
 <script type="text/javascript">
-	/*
 	$(document).ready(function() {
 			$('#categories').multiselect({
 				enableFiltering: true,
@@ -110,6 +109,5 @@
       }
 			})
 	});
-	*/
 </script>
 @endsection
