@@ -43,13 +43,14 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //TODO: Update message for invalid categories
         $validated = $request->validate([
             'name' => 'required|unique:products|max:255',
             'unit' => 'required|exists:units,id',
             'categories' => 'required|array',
             'categories.*' => 'required|in:'. Category::pluck('id')->implode(','),
-        ], [], ['categories.*' => 'category']);
+            'selling_price' => 'required',
+            'cost_price' => 'required'
+        ], [], ['categories.*' => 'category (or more)']);
         
         dd($request->get('categories'));
 
