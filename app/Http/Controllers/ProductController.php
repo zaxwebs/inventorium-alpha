@@ -48,6 +48,7 @@ class ProductController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|unique:products|max:255',
+            'description' => 'max:255',
             'unit' => 'required|exists:units,id',
             'categories' => 'required|array',
             'categories.*' => 'required|in:'. Category::pluck('id')->implode(','),
@@ -58,6 +59,7 @@ class ProductController extends Controller
         $product = new Product();
         $product->fill([
             'name' => $request->get('name'),
+            'description' => $request->get('description'),
             'unit_id' => $request->get('unit'),
         ]);
 

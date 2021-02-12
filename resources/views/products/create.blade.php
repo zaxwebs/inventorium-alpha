@@ -26,6 +26,15 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="form-group">
+								<label for="description">Description <span class="text-muted">(Optional)</span></label>
+								<textarea name="description" class="form-control" id="description"
+									rows="3">{{ old('description') }}</textarea>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
 								<label for="name">Select a Unit</label>
 								<div class="row">
 									@foreach ($units as $unit)
