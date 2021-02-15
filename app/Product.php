@@ -23,6 +23,22 @@ class Product extends Model
         return ucfirst($value);
     }
 
+    public function getRateAttribute($value)
+    {
+        return $this->rates()->latest()->first();
+    }
+
+    
+    public function getCostPriceAttribute($value)
+    {
+        return $this->rates()->latest()->first()->cost_price;
+    }
+
+    public function getSellingPriceAttribute($value)
+    {
+        return $this->rates()->latest()->first()->selling_price;
+    }
+
     public function rates()
     {
         return $this->hasMany(Rate::class);
