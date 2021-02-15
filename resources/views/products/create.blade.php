@@ -114,6 +114,7 @@
 	$(document).ready(function() {
 			$('#categories').multiselect({
 				enableFiltering: true,
+				buttonTextAlignment: 'left',
 				buttonWidth: '100%',
 				enableCaseInsensitiveFiltering: true,
 				templates: {

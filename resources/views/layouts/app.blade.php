@@ -9,10 +9,10 @@
 	<!-- CoreUI CSS -->
 	<link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/all.min.css">
 	<link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css" crossorigin="anonymous">
+	@livewireStyles
 	<!-- View CSS -->
 	@yield('styles')
 	<!-- App CSS -->
-	@yield('styles')
 	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 	<title>Inventorium</title>
 </head>
@@ -63,6 +63,7 @@
 	<!-- CoreUI JavaScript -->
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.bundle.min.js"></script>
+	@livewireScripts
 	@yield('scripts')
 </body>
 

@@ -41,7 +41,8 @@
 				href="#">
 				<i class="c-sidebar-nav-icon cil-puzzle"></i> Orders</a>
 			<ul class="c-sidebar-nav-dropdown-items">
-				<li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#"><span class="c-sidebar-nav-icon"></span>
+				<li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('orders.create') }}"><span
+							class="c-sidebar-nav-icon"></span>
 						Add Order</a></li>
 				<li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#"><span class="c-sidebar-nav-icon"></span>
 						View Orders</a></li>
