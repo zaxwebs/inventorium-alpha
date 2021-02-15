@@ -4,7 +4,7 @@
         <div class="card-header"><strong>Add an Order</strong></div>
         <div class="card-body">
             <div class="row">
-                {{ json_encode($orderProducts) }}
+                <pre class="col-sm-12">{{ json_encode($orderProducts) }}</pre>
             </div>
             @foreach ($orderProducts as $index => $orderProduct)
             <div class="row">
@@ -17,6 +17,21 @@
                             <option value="{{ $product->id }}">{{ $product->name }}</option>
                             @endforeach
                         </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="">Quantity</label>
+                        <div class="input-group">
+
+                            <input wire:model.lazy="orderProducts.{{ $index }}.quantity" class="form-control"
+                                id="cost_price" name="cost_price" type="number" min="0" step="any"
+                                value="{{ $orderProduct['quantity'] }}">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    {{ $orderProduct['unit'] ? $orderProduct['unit'] : 'Unit' }}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

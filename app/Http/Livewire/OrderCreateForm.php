@@ -24,8 +24,10 @@ class OrderCreateForm extends Component
 
     public function updatedOrderProducts() {
         foreach($this->orderProducts as $index => $orderProduct) {
-            $product = $this->allProducts->firstWhere('id', $orderProduct['id']);
-            $this->orderProducts[$index]['unit'] = $product->unit->name;
+            if($orderProduct['id'] !== null) {
+                $product = $this->allProducts->firstWhere('id', $orderProduct['id']);
+                $this->orderProducts[$index]['unit'] = $product->unit->name;
+            }
         }
     }
 
