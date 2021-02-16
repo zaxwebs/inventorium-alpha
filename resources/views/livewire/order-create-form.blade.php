@@ -3,11 +3,6 @@
         @csrf
         <div class="card-header"><strong>Add an Order</strong></div>
         <div class="card-body">
-            <div class="row">
-                <pre class="col-sm-12">{{ json_encode($productIds) }}</pre>
-                <pre class="col-sm-12">{{ json_encode($productIdles) }}</pre>
-                <pre class="col-sm-12">{{ json_encode($productRates) }}</pre>
-            </div>
             @foreach ($productIds as $index => $productId)
             <div wire:key="{{ $index }}" class="row">
                 <div class="col-lg-3">
