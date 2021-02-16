@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class OrderCreateForm extends Component
 {
+
     public $allProducts;
 
     public $productIds = [];
@@ -33,6 +34,18 @@ class OrderCreateForm extends Component
                 $this->productRates[$index] = $product->selling_price;
             }
         }
+    }
+
+    public function calculateProductTotal($index) {
+        return $this->productRates[$index] * $this->productIdles[$index]['quantity'];
+    }
+
+    public function calculateTotal() {
+        $total = 0;
+        for($i=0; $i < count($this->productIds); $i++) {
+            $total += $this->calculateProductTotal($i);
+        }
+        return $total;
     }
 
     public function addProduct() {
