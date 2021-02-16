@@ -21,7 +21,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-2">
                     <div class="form-group">
                         <label for="">Quantity</label>
                         <div class="input-group">
@@ -34,20 +34,32 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-2">
                     <div class="form-group">
                         <label for="">Rate per
                             {{ $productIdles[$index]['unit']  ? $productIdles[$index]['unit'] : 'Unit' }}</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <div class="input-group-text">$</div>
+                                <div class="input-group-text">₹</div>
                             </div>
                             <input wire:model.lazy="productRates.{{ $index }}" class="form-control" type="number"
                                 min="0" step="any" value="{{ $productRates[$index] }}">
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label for="">Total</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">₹</div>
+                            </div>
+                            <input disabled class="form-control" type="number" min="0" step="any"
+                                value="{{ $productRates[$index] * $productIdles[$index]['quantity'] }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
                     <div class="form-group">
                         <label class="d-block" for="">Actions</label>
                         <button class="btn btn-secondary" wire:click.prevent="removeProduct({{ $index }})">Remove

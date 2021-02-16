@@ -15,7 +15,7 @@ class OrderCreateForm extends Component
 
     public $productIdlesSkeleton = [
         'unit' => null,
-        'quantity' => 0,
+        'quantity' => 1,
     ];
 
     public function mount() {

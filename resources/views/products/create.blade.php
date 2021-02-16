@@ -73,7 +73,7 @@
 								<label for="cost_price">Cost Price</label>
 								<div class="input-group">
 									<div class="input-group-prepend">
-										<div class="input-group-text">$</div>
+										<div class="input-group-text">₹</div>
 									</div>
 									<input class="form-control" id="cost_price" name="cost_price" type="number" min="0" step="any"
 										placeholder="Enter cost price" value={{ old('cost_price') }}>
@@ -85,7 +85,7 @@
 								<label for="cost_price">Selling Price</label>
 								<div class="input-group">
 									<div class="input-group-prepend">
-										<div class="input-group-text">$</div>
+										<div class="input-group-text">₹</div>
 									</div>
 									<input class="form-control" id="selling_price" name="selling_price" type="number" min="0" step="any"
 										placeholder="Enter selling price" value={{ old('selling_price') }}>
