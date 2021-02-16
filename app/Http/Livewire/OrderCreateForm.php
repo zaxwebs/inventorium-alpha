@@ -8,47 +8,44 @@ use Livewire\Component;
 class OrderCreateForm extends Component
 {
     public $allProducts;
-    public $orderProducts;
-    public $newProduct = null;
 
-    public $oldOrderProducts;
+    public $productIds = [];
+    public $productIdles = [];
+    public $productRates= [];
 
-    public $productSkeleton = [
-        'id' => null,
+    public $productIdlesSkeleton = [
         'unit' => null,
         'quantity' => 0,
-        'rate' => 0,
     ];
 
     public function mount() {
         $this->allProducts = Product::all();
-        $this->orderProducts = [ $this->productSkeleton ];
+        $this->addProduct();
     }
 
-    public function updatingOrderProducts() {
-        $this->oldOrderProducts = $this->orderProducts;
-    }
-
-    public function updatedOrderProducts() {
-        $oldIds = array_column($this->oldOrderProducts, 'id');
-        $ids = array_column($this->orderProducts, 'id');
-
-        foreach($this->orderProducts as $index => $orderProduct) {
-            if($orderProduct['id'] !== null) {
-                $product = $this->allProducts->firstWhere('id', $orderProduct['id']);
-                $this->orderProducts[$index]['unit'] = $product->unit->name;
-                $this->orderProducts[$index]['rate'] = $product->selling_price;
+    public function updatedProductIds() {
+        foreach($this->productIds as $index => $productId) {
+            if($productId !== null) {
+                $product = $this->allProducts->firstWhere('id', $productId);
+                $this->productIdles[$index]['unit'] = $product->unit->name;
+                $this->productRates[$index] = $product->selling_price;
             }
         }
     }
 
     public function addProduct() {
-        $this->orderProducts[] = $this->productSkeleton;
+        $this->productIds[] = null;
+        $this->productIdles[] = $this->productIdlesSkeleton;
+        $this->productRates[] = 0;
     }
 
     public function removeProduct($index) {
-        unset($this->orderProducts[$index]);
-        $this->orderProducts = array_values($this->orderProducts);
+        unset($this->productIds[$index]);
+        $this->productIds = array_values($this->productIds);
+        unset($this->productIdles[$index]);
+        $this->productIdles = array_values($this->productIdles);
+        unset($this->productRates[$index]);
+        $this->productRates = array_values($this->productRates);
     }
 
     public function render() {

@@ -4,11 +4,9 @@
         <div class="card-header"><strong>Add an Order</strong></div>
         <div class="card-body">
             <div class="row">
-                <pre class="col-sm-12">{{ json_encode($productIds) }}</pre>
-                <pre class="col-sm-12">{{ json_encode($productIdles) }}</pre>
-                <pre class="col-sm-12">{{ json_encode($productRates) }}</pre>
+                <pre class="col-sm-12">{{ json_encode($orderProducts) }}</pre>
             </div>
-            @foreach ($productIds as $index => $productId)
+            @foreach ($orderProducts as $index => $orderProduct)
             <div wire:key="{{ $index }}" class="row">
                 <div class="col-lg-3">
                     <div class="form-group">
@@ -25,25 +23,24 @@
                     <div class="form-group">
                         <label for="">Quantity</label>
                         <div class="input-group">
-                            <input wire:model.lazy="productIdles.{{ $index }}.quantity" class="form-control"
-                                type="number" min="0" step="any" value="{{ $productIdles[$index]['quantity'] }}">
+                            <input wire:model.lazy="orderProducts.{{ $index }}.quantity" class="form-control"
+                                type="number" min="0" step="any" value="{{ $orderProduct['quantity'] }}">
                             <div class="input-group-append">
                                 <div class="input-group-text">
-                                    {{ $productIdles[$index]['unit'] ? $productIdles[$index]['unit'] : 'Unit' }}</div>
+                                    {{ $orderProduct['unit'] ? $orderProduct['unit'] : 'Unit' }}</div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="form-group">
-                        <label for="">Rate per
-                            {{ $productIdles[$index]['unit']  ? $productIdles[$index]['unit'] : 'Unit' }}</label>
+                        <label for="">Rate per {{ $orderProduct['unit'] ? $orderProduct['unit'] : 'Unit' }}</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">$</div>
                             </div>
-                            <input wire:model.lazy="productRates.{{ $index }}" class="form-control" type="number"
-                                min="0" step="any" value="{{ $productRates[$index] }}">
+                            <input wire:model.lazy="orderProducts.{{ $index }}.rate" class="form-control" type="number"
+                                min="0" step="any" value="{{ $orderProduct['rate'] }}">
                         </div>
                     </div>
                 </div>
