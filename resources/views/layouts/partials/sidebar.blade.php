@@ -10,6 +10,8 @@
 				<i class="c-sidebar-nav-icon cil-puzzle"></i> Add Sale</a></li>
 		<li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="typography.html">
 				<i class="c-sidebar-nav-icon cil-puzzle"></i> Add Purchase</a></li>
+		<li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('orders.create') }}">
+				<i class=" c-sidebar-nav-icon cil-cart"></i> Add Order</a></li>
 		<li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('products.create') }}">
 				<i class="c-sidebar-nav-icon cil-devices"></i> Add Product</a></li>
 		<li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('categories.create') }}">
@@ -39,7 +41,7 @@
 		</li>
 		<li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle"
 				href="#">
-				<i class="c-sidebar-nav-icon cil-puzzle"></i> Orders</a>
+				<i class="c-sidebar-nav-icon cil-cart"></i> Orders</a>
 			<ul class="c-sidebar-nav-dropdown-items">
 				<li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('orders.create') }}"><span
 							class="c-sidebar-nav-icon"></span>
