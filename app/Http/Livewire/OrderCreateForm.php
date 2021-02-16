@@ -13,6 +13,8 @@ class OrderCreateForm extends Component
     public $productIdles = [];
     public $productRates= [];
 
+    public $type = true; // true = selling, false = purchasing
+
     public $productIdlesSkeleton = [
         'unit' => null,
         'quantity' => 1,

@@ -3,6 +3,19 @@
         @csrf
         <div class="card-header"><strong>Add an Order</strong></div>
         <div class="card-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="mr-1">Order Type</label>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button wire:click.prevent="$set('type', true)" type="button"
+                                class="btn {{ $type == true ? 'btn-primary' : 'btn-secondary'}}">Selling</button>
+                            <button wire:click.prevent="$set('type', false)" type="button"
+                                class="btn {{ $type == false ? 'btn-primary' : 'btn-secondary'}}">Purchasing</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             @foreach ($productIds as $index => $productId)
             <div wire:key="{{ $index }}" class="row">
                 <div class="col-lg-3">
