@@ -21,9 +21,25 @@ class OrderCreateForm extends Component
         'quantity' => 1,
     ];
 
+    protected $rules = [
+        'productIds.*' => 'required|exists:products,id',
+        'productIdles.*.quantity' => 'required|numeric|gt:0',
+        'productRates.*' => 'required|numeric|gt:0',
+    ];
+
+    protected $validationAttributes  = [
+        'productIds.*' => 'product',
+        'productIdles.*.quantity' => 'quantity',
+        'productRates.*' => 'rate',
+    ];
+
     public function mount() {
         $this->allProducts = Product::all();
         $this->addProduct();
+    }
+
+    public function updated() {
+        $this->resetValidation();
     }
 
     public function updatedProductIds() {
@@ -61,6 +77,11 @@ class OrderCreateForm extends Component
         $this->productIdles = array_values($this->productIdles);
         unset($this->productRates[$index]);
         $this->productRates = array_values($this->productRates);
+    }
+
+    public function submit() {
+        $this->validate();
+        $errors = $this->getErrorBag();
     }
 
     public function render() {

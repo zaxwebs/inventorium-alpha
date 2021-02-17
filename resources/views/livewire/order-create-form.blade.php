@@ -1,5 +1,5 @@
 <div class="card">
-    <form>
+    <form wire:submit.prevent="submit">
         @csrf
         <div class="card-header"><strong>Add an Order</strong></div>
         <div class="card-body">
@@ -76,6 +76,21 @@
                                 Product</button>
                         </div>
                     </div>
+                    @if($errors->has('productIds.' . $index))
+                        <div class="col-sm-12">
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach (['productIds.' . $index, '$productIdles. ' . $index .'.quantity', 'productRates.' . $index] as $field)
+                                    @if($errors->has($field))
+                                    @foreach ($errors->get($field) as $error)
+                                    <li class="d-flex align-items-center"><i class="cil-x"></i> {{ $error }}</li>
+                                    @endforeach
+                                    @endif
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             @endforeach
             <div class="row">
