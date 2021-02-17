@@ -8,10 +8,10 @@
                     <div class="form-group">
                         <label class="mr-1">Order Type</label>
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <button wire:click.prevent="$set('type', true)" type="button"
-                                class="btn {{ $type == true ? 'btn-primary' : 'btn-secondary' }}">Selling</button>
-                            <button wire:click.prevent="$set('type', false)" type="button"
-                                class="btn {{ $type == false ? 'btn-primary' : 'btn-secondary' }}">Purchasing</button>
+                            <button wire:click.prevent="$set('selling', true)" type="button"
+                                class="btn {{ $selling == true ? 'btn-primary' : 'btn-secondary' }}">Selling</button>
+                            <button wire:click.prevent="$set('selling', false)" type="button"
+                                class="btn {{ $selling == false ? 'btn-primary' : 'btn-secondary' }}">Purchasing</button>
                         </div>
                     </div>
                 </div>

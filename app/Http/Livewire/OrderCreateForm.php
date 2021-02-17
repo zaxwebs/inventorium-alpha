@@ -19,7 +19,7 @@ class OrderCreateForm extends Component
     public $productIdles = [];
     public $productRates= [];
 
-    public $type = true; // true = selling, false = purchasing
+    public $selling = true;
 
     public $productIdlesSkeleton = [
         'unit' => null,
@@ -47,12 +47,21 @@ class OrderCreateForm extends Component
         $this->resetValidation();
     }
 
+    public function updatedSelling() {
+        foreach($this->productIds as $index => $productId) {
+            if($productId !== null) {
+                $product = $this->allProducts->firstWhere('id', $productId);
+                $this->productRates[$index] = $this->selling == true ? $product->selling_price : $product->cost_price;
+            }
+        }
+    }
+
     public function updatedProductIds() {
         foreach($this->productIds as $index => $productId) {
             if($productId !== null) {
                 $product = $this->allProducts->firstWhere('id', $productId);
                 $this->productIdles[$index]['unit'] = $product->unit->name;
-                $this->productRates[$index] = $product->selling_price;
+                $this->productRates[$index] = $this->selling == true ? $product->selling_price : $product->cost_price;
             }
         }
     }
@@ -82,6 +91,8 @@ class OrderCreateForm extends Component
         $this->productIdles = array_values($this->productIdles);
         unset($this->productRates[$index]);
         $this->productRates = array_values($this->productRates);
+
+        $this->resetValidation();
     }
 
     public function submit() {
