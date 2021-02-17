@@ -1,5 +1,10 @@
 <?php
 
+/* TODO
+    Fix quantity and rate validation.
+    Add Specific ID tasking.
+*/
+
 namespace App\Http\Livewire;
 
 use App\Product;
@@ -81,7 +86,6 @@ class OrderCreateForm extends Component
 
     public function submit() {
         $this->validate();
-        $errors = $this->getErrorBag();
     }
 
     public function render() {
