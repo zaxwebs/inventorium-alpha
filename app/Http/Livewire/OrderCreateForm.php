@@ -7,7 +7,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Order;
 use App\Product;
+use App\OrderItems;
 use Livewire\Component;
 
 class OrderCreateForm extends Component
@@ -97,6 +99,23 @@ class OrderCreateForm extends Component
 
     public function submit() {
         $this->validate();
+
+        $order = new Order();
+        $order->type = $this->selling;
+        $order->save();
+
+        foreach($this->productIds as $index => $productId) {
+            if($productId !== null) {
+                $orderItem = new OrderItems();
+                $orderItem->product_id = $this->productIds[$index];
+                $orderItem->quantity = $this->productIdles[$index]['quantity'];
+                $orderItem->amount = $this->productRates[$index];
+                
+                $order->items()->save($orderItem);
+            }
+        }
+
+        
     }
 
     public function render() {
