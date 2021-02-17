@@ -3,7 +3,6 @@
         @csrf
         <div class="card-header"><strong>Add an Order</strong></div>
         <div class="card-body">
-            <pre>{{ var_dump($productRates) }}</pre>
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group">
