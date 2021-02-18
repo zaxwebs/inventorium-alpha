@@ -2,7 +2,6 @@
 
 /* TODO
     Fix quantity and rate validation.
-    Add Specific ID tasking.
 */
 
 namespace App\Http\Livewire;
@@ -58,14 +57,10 @@ class OrderCreateForm extends Component
         }
     }
 
-    public function updatedProductIds() {
-        foreach($this->productIds as $index => $productId) {
-            if($productId !== null) {
-                $product = $this->allProducts->firstWhere('id', $productId);
-                $this->productIdles[$index]['unit'] = $product->unit->name;
-                $this->productRates[$index] = $this->selling == true ? $product->selling_price : $product->cost_price;
-            }
-        }
+    public function updatedProductIds($value, $index) {
+        $product = $this->allProducts->firstWhere('id', $this->productIds[$index]);
+        $this->productIdles[$index]['unit'] = $product->unit->name;
+        $this->productRates[$index] = $this->selling == true ? $product->selling_price : $product->cost_price;
     }
 
     public function calculateProductTotal($index) {
