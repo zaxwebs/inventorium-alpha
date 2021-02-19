@@ -2,11 +2,11 @@
 
 namespace App;
 
+use App\Category;
 use App\Rate;
 use App\Unit;
-use App\Category;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
@@ -15,7 +15,7 @@ class Product extends Model
     protected $fillable = [
         'name',
         'description',
-        'unit_id'
+        'unit_id',
     ];
 
     public function getNameAttribute($value)
@@ -23,18 +23,32 @@ class Product extends Model
         return ucfirst($value);
     }
 
-    public function getRateAttribute($value)
+    public function getRateAttribute()
     {
         return $this->rates()->latest()->first();
     }
 
-    
-    public function getCostPriceAttribute($value)
+    public function getStockAttribute()
+    {
+        $total = 0;
+        $orderItems = $this->orders;
+        foreach ($orderItems as $orderProduct) {
+            $type = $orderProduct->order->type;
+            if ($type == 0) {
+                $total += $orderProduct->quantity;
+            } else {
+                $total -= $orderProduct->quantity;
+            }
+        }
+        return $total;
+    }
+
+    public function getCostPriceAttribute()
     {
         return $this->rates()->latest()->first()->cost_price;
     }
 
-    public function getSellingPriceAttribute($value)
+    public function getSellingPriceAttribute()
     {
         return $this->rates()->latest()->first()->selling_price;
     }

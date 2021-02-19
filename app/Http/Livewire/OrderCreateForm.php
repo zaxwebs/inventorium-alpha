@@ -1,14 +1,14 @@
 <?php
 
 /* TODO
-    Fix quantity and rate validation.
-*/
+Fix quantity and rate validation.
+ */
 
 namespace App\Http\Livewire;
 
 use App\Order;
-use App\Product;
 use App\OrderItems;
+use App\Product;
 use Livewire\Component;
 
 class OrderCreateForm extends Component
@@ -18,12 +18,13 @@ class OrderCreateForm extends Component
 
     public $productIds = [];
     public $productIdles = [];
-    public $productRates= [];
+    public $productRates = [];
 
     public $selling = true;
 
     public $productIdlesSkeleton = [
         'unit' => null,
+        'stock' => 0,
         'quantity' => 1,
     ];
 
@@ -33,55 +34,63 @@ class OrderCreateForm extends Component
         'productRates.*' => 'required|numeric|gt:0',
     ];
 
-    protected $validationAttributes  = [
+    protected $validationAttributes = [
         'productIds.*' => 'product',
         'productIdles.*.quantity' => 'quantity',
         'productRates.*' => 'rate',
     ];
 
-    public function mount() {
+    public function mount()
+    {
         $this->allProducts = Product::all();
         $this->addProduct();
     }
 
-    public function updated() {
+    public function updated()
+    {
         $this->resetValidation();
     }
 
-    public function updatedSelling() {
-        foreach($this->productIds as $index => $productId) {
-            if($productId !== null) {
+    public function updatedSelling()
+    {
+        foreach ($this->productIds as $index => $productId) {
+            if ($productId !== null) {
                 $product = $this->allProducts->firstWhere('id', $productId);
                 $this->productRates[$index] = $this->selling == true ? $product->selling_price : $product->cost_price;
             }
         }
     }
 
-    public function updatedProductIds($value, $index) {
+    public function updatedProductIds($value, $index)
+    {
         $product = $this->allProducts->firstWhere('id', $this->productIds[$index]);
         $this->productIdles[$index]['unit'] = $product->unit->name;
         $this->productRates[$index] = $this->selling == true ? $product->selling_price : $product->cost_price;
     }
 
-    public function calculateProductTotal($index) {
+    public function calculateProductTotal($index)
+    {
         return $this->productRates[$index] * $this->productIdles[$index]['quantity'];
     }
 
-    public function calculateTotal() {
+    public function calculateTotal()
+    {
         $total = 0;
-        for($i=0; $i < count($this->productIds); $i++) {
+        for ($i = 0; $i < count($this->productIds); $i++) {
             $total += $this->calculateProductTotal($i);
         }
         return $total;
     }
 
-    public function addProduct() {
+    public function addProduct()
+    {
         $this->productIds[] = null;
         $this->productIdles[] = $this->productIdlesSkeleton;
         $this->productRates[] = 0;
     }
 
-    public function removeProduct($index) {
+    public function removeProduct($index)
+    {
         unset($this->productIds[$index]);
         $this->productIds = array_values($this->productIds);
         unset($this->productIdles[$index]);
@@ -92,28 +101,31 @@ class OrderCreateForm extends Component
         $this->resetValidation();
     }
 
-    public function submit() {
+    public function submit()
+    {
         $this->validate();
 
         $order = new Order();
         $order->type = $this->selling;
         $order->save();
 
-        foreach($this->productIds as $index => $productId) {
-            if($productId !== null) {
+        foreach ($this->productIds as $index => $productId) {
+            if ($productId !== null) {
                 $orderItem = new OrderItems();
                 $orderItem->product_id = $this->productIds[$index];
                 $orderItem->quantity = $this->productIdles[$index]['quantity'];
                 $orderItem->amount = $this->productRates[$index];
-                
+
                 $order->items()->save($orderItem);
             }
         }
 
-        
+        return redirect()->back()->with('success', 'Order created.');
+
     }
 
-    public function render() {
+    public function render()
+    {
         return view('livewire.order-create-form');
     }
 }

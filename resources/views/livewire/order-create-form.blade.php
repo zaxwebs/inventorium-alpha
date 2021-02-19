@@ -29,6 +29,12 @@
                             </select>
                         </div>
                     </div>
+                    <div class="col-lg-1">
+                        <div class="form-group">
+                            <label for="">Stock</label>
+                            <input wire:model="productIdles.{{ $index }}.stock" class="form-control" type="number" disabled>
+                        </div>
+                    </div>
                     <div class="col-lg-2">
                         <div class="form-group">
                             <label for="">Quantity</label>
