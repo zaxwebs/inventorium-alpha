@@ -65,6 +65,7 @@ class OrderCreateForm extends Component
     {
         $product = $this->allProducts->firstWhere('id', $this->productIds[$index]);
         $this->productIdles[$index]['unit'] = $product->unit->name;
+        $this->productIdles[$index]['stock'] = $product->stock;
         $this->productRates[$index] = $this->selling == true ? $product->selling_price : $product->cost_price;
     }
 
@@ -120,7 +121,8 @@ class OrderCreateForm extends Component
             }
         }
 
-        return redirect()->back()->with('success', 'Order created.');
+        session()->flash('success', 'Order created successfully.');
+        return redirect()->route('orders.create');
 
     }
 
