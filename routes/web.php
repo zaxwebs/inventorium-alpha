@@ -18,7 +18,7 @@ use App\Http\Controllers\CategoryController;
 */
 
 Route::get('/', function () {
-    return view('home');
+	return view('home');
 });
 
 Route::resource('units', UnitController::class);
