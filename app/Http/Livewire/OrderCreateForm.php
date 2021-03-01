@@ -108,6 +108,7 @@ class OrderCreateForm extends Component
 
         $order = new Order();
         $order->type = $this->selling;
+        $order->total = $this->calculateTotal();
         $order->save();
 
         foreach ($this->productIds as $index => $productId) {
